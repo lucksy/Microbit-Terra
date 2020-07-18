@@ -18,9 +18,10 @@ let currentValue = 0
 currentValue = pins.analogReadPin(AnalogPin.P1)
 let minValue = 290
 let maxValue = 1020
-resultValue = Math.round(Math.map(currentValue, minValue, maxValue, 0, 100))
+resultValue = Math.round((currentValue - minValue) / (maxValue - minValue) * 100)
 basic.showNumber(resultValue)
 basic.showNumber(currentValue)
+let mapVar = Math.map(currentValue, minValue, maxValue, 0, 100)
 basic.forever(function () {
 	
 })
