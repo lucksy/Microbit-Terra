@@ -14,11 +14,11 @@ basic.forever(function () {
     resultValue = (currentValue - minValue) / (maxValue - minValue) * 100
     mapVar = Math.map(currentValue, minValue, maxValue, 0, 100)
     if (currentValue > 900) {
-        basic.showIcon(IconNames.Duck)
+        basic.showIcon(IconNames.Umbrella)
     } else if (currentValue >= 600) {
         basic.showIcon(IconNames.Heart)
         basic.showIcon(IconNames.SmallHeart)
     } else {
-        basic.showIcon(IconNames.Surprised)
+        basic.showIcon(IconNames.Sad)
     }
 })
