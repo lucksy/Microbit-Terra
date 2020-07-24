@@ -15,7 +15,7 @@ input.onButtonPressed(Button.B, function () {
 })
 let resultValue = 0
 let currentValue = 0
-currentValue = 331
+currentValue = pins.analogReadPin(AnalogPin.P1)
 let minValue = 290
 let maxValue = 1020
 resultValue = (currentValue - minValue) / (maxValue - minValue) * 100
