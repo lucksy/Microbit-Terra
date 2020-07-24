@@ -1,7 +1,7 @@
 input.onButtonPressed(Button.A, function () {
-    if (currentValue > 1010) {
+    if (currentValue > 900) {
         basic.showIcon(IconNames.Surprised)
-    } else if (currentValue >= 700) {
+    } else if (currentValue >= 600) {
         basic.showIcon(IconNames.Heart)
     } else {
         basic.showIcon(IconNames.Sad)
@@ -15,12 +15,10 @@ input.onButtonPressed(Button.B, function () {
 })
 let resultValue = 0
 let currentValue = 0
-currentValue = pins.analogReadPin(AnalogPin.P1)
+currentValue = 331
 let minValue = 290
 let maxValue = 1020
-resultValue = Math.round((currentValue - minValue) / (maxValue - minValue) * 100)
-basic.showNumber(resultValue)
-basic.showNumber(currentValue)
+resultValue = (currentValue - minValue) / (maxValue - minValue) * 100
 let mapVar = Math.map(currentValue, minValue, maxValue, 0, 100)
 basic.forever(function () {
 	
