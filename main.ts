@@ -14,8 +14,8 @@ input.onButtonPressed(Button.A, function () {
 	
 })
 let mapVar = 0
-let currentValue = 0
 let resultValue = 0
+let currentValue = 0
 let p_number = 0
 OLED.init(128, 64)
 radio.setGroup(1)
@@ -26,7 +26,7 @@ pins.digitalWritePin(DigitalPin.P2, 0)
 pins.digitalWritePin(DigitalPin.P0, 0)
 pins.digitalWritePin(DigitalPin.P3, 0)
 basic.forever(function () {
-    OLED.writeNumNewLine(resultValue)
+    OLED.writeNumNewLine(currentValue)
     currentValue = pins.analogReadPin(AnalogPin.P0)
     resultValue = (currentValue - minValue) / (maxValue - minValue) * 100
     mapVar = Math.map(currentValue, minValue, maxValue, 0, 100)
