@@ -1,11 +1,32 @@
 radio.onReceivedNumber(function (receivedNumber) {
-    if (receivedNumber == 100) {
-        pins.digitalWritePin(DigitalPin.P3, 0)
+    if (p_number != receivedNumber) {
+        if (receivedNumber == 100) {
+            pins.digitalWritePin(DigitalPin.P3, 0)
+        } else {
+            pins.digitalWritePin(DigitalPin.P3, 1)
+            basic.pause(2000)
+        }
     } else {
-        pins.digitalWritePin(DigitalPin.P3, 1)
+        p_number = receivedNumber
     }
 })
 input.onButtonPressed(Button.A, function () {
+	
+})
+let mapVar = 0
+let currentValue = 0
+let resultValue = 0
+let p_number = 0
+OLED.init(128, 64)
+radio.setGroup(1)
+led.enable(false)
+let minValue = 290
+let maxValue = 1023
+pins.digitalWritePin(DigitalPin.P2, 0)
+pins.digitalWritePin(DigitalPin.P0, 0)
+pins.digitalWritePin(DigitalPin.P3, 0)
+basic.forever(function () {
+    OLED.writeNumNewLine(resultValue)
     currentValue = pins.analogReadPin(AnalogPin.P0)
     resultValue = (currentValue - minValue) / (maxValue - minValue) * 100
     mapVar = Math.map(currentValue, minValue, maxValue, 0, 100)
@@ -22,21 +43,5 @@ input.onButtonPressed(Button.A, function () {
     }
     pins.digitalWritePin(DigitalPin.P1, 0)
     pins.digitalWritePin(DigitalPin.P2, 0)
+    basic.pause(5000)
 })
-input.onButtonPressed(Button.B, function () {
-    led.plotBarGraph(
-    resultValue,
-    100
-    )
-})
-let mapVar = 0
-let resultValue = 0
-let currentValue = 0
-let maxValue = 0
-let minValue = 0
-radio.setGroup(1)
-led.enable(false)
-minValue = 290
-maxValue = 1023
-pins.digitalWritePin(DigitalPin.P2, 0)
-pins.digitalWritePin(DigitalPin.P0, 0)
